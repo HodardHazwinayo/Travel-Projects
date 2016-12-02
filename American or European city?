@@ -1,0 +1,26 @@
+import numpy
+import scipy
+import sklearn
+from sklearn import tree
+###Name, Metro Population, Area in kmsquared
+citynames =["Paris", "Madrid", "Los Angeles", "Seattle", "Rome"]
+cityfeatures = [[12000000, 2300], [6300000, 4610], [18000000, 12000], [3733000, 15000], [4340000, 5352]]
+continents = ["Western Europe", "Western Europe", "North America", "North America", "Western Europe" ]
+cityclass = tree.DecisionTreeClassifier()
+cityclass = cityclass.fit(cityfeatures, continents)
+
+def newcitydefine():
+    global lencities
+    newcity = input("Enter a city name  ")
+    citynames.append(newcity)
+    newcitypop = int(input("Enter city population   "))
+    newcityarea = int(input("Enter city area in square km   "))
+    cityfeatures.append([newcitypop, newcityarea])
+    lencities = len(citynames)
+    return lencities
+
+def newcitypredict(lencities):
+    print(cityclass.predict([ [cityfeatures[lencities-1][0], cityfeatures[lencities-1][1] ]]))
+
+newcitydefine()
+newcitypredict(lencities)
